@@ -17,7 +17,7 @@ def initiate():
     logging.info("POST /application/initiate")
     application_num = functions.randomDigits(15)
     # application number will be used to track the application and to which buisness id it is associated for the future use case
-    return Response(status=application_num, status=200)
+    return Response(status={'application_id': application_num}, status=200)
 
 
 @bp.route('/submit', methods=['POST'])

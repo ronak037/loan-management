@@ -9,7 +9,7 @@ import traceback
 
 bp = Blueprint('review_details', __name__)
 
-@bp.route('/review_details', methods=['GET'])
+@bp.route('/balance_sheet', methods=['GET'])
 def review_details():
     args = request.args
     try:

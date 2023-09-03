@@ -4,7 +4,7 @@ def buisness_details_schema(schema):
         'buisness_id': schema['id'],
         'buisness_name': schema['name'],
         'buisness_owner': schema['owner'],
-        'buisness_yoe': schema['setup_year'],
+        'buisness_yoe': schema['yoe'],
         'acc_provider': schema['acc_provider'],
         'loan_amount': schema['amount']
     }
@@ -13,13 +13,14 @@ def buisness_details_schema(schema):
 def submit_details_schema(schema):
     return {
         'application_id': schema['ref'],
-        'buisness_id': schema['id'],
-        'buisness_name': schema['name'],
-        'buisness_owner': schema['owner'],
-        'buisness_yoe': schema['setup_year'],
-        'loan_amount': schema['amount'],
+        'buisness_id': schema['buisness_details']['id'],
+        'buisness_name': schema['buisness_details']['name'],
+        'buisness_owner': schema['buisness_details']['owner'],
+        'buisness_yoe': schema['buisness_details']['yoe'],
+        'loan_amount': schema['buisness_details']['loan_amount'],
         'sheet': schema['sheet']
     }
+
 
 def decision_engine_input_schema(schema):
     return {

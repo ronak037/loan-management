@@ -19,9 +19,9 @@ def create_app(test_config=None):
     logging.basicConfig(level=logging.DEBUG)
 
     from blueprints.application_details import application_details
-    app.register_blueprint(application_details, url_prefix='/application')
+    app.register_blueprint(application_details, url_prefix='/api/application')
 
     from blueprints.review_details import review_details
-    app.register_blueprint(review_details, url_prefix='/')
+    app.register_blueprint(review_details, url_prefix='/api')
 
     return app
