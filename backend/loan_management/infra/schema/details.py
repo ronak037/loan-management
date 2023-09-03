@@ -4,9 +4,9 @@ def buisness_details_schema(schema):
         'buisness_id': schema['id'],
         'buisness_name': schema['name'],
         'buisness_owner': schema['owner'],
-        'buisness_yoe': schema['yoe'],
+        'buisness_yoe': int(schema['yoe']),
         'acc_provider': schema['acc_provider'],
-        'loan_amount': schema['amount']
+        'loan_amount': int(schema['amount'])
     }
 
 

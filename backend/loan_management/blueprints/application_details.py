@@ -1,26 +1,29 @@
 from flask import Blueprint, request, Response
 
-from common import functions
-from infra.schema.details import submit_details_schema, decision_engine_input_schema
-from api_functions import application_details_functions
-from exceptions.exceptions import InvalidAmountException
+from loan_management.common import functions
+from loan_management.infra.schema.details import submit_details_schema, decision_engine_input_schema
+from loan_management.api_functions import application_details_functions
+from loan_management.exceptions.exceptions import InvalidAmountException
 
 import logging
 import traceback
 
-bp = Blueprint('application_details', __name__)
+application_details = Blueprint('application_details', __name__)
 
-@bp.route('/initiate', methods=['POST'])
+@application_details.route('/initiate', methods=['POST'])
 def initiate():
     """API call to initiate the application which return application number which can be used in various tracking systems, etc
     """
     logging.info("POST /application/initiate")
     application_num = functions.randomDigits(15)
     # application number will be used to track the application and to which buisness id it is associated for the future use case
-    return Response(status={'application_id': application_num}, status=200)
+    # check should be added so that application number generated is unique
+
+    res = {'application_id': application_num}
+    return res, 200
 
 
-@bp.route('/submit', methods=['POST'])
+@application_details.route('/submit', methods=['POST'])
 def submit():
     """API call to submit the application
     """
@@ -47,4 +50,4 @@ def submit():
 
     application_status_info = application_details_functions.process_application(decision_enginer_buisness_details, preAssessment_value)
 
-    return Response(status=application_status_info, status=201)
+    return application_status_info, 201

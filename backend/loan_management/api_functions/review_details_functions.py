@@ -1,4 +1,4 @@
-from exceptions.exceptions import InvalidAmountException, InvalidValueException
+from loan_management.exceptions.exceptions import InvalidAmountException, InvalidValueException
 
 def validate_info(details):
     """Function to validate the input details

@@ -1,16 +1,16 @@
 from flask import Blueprint, request, Response
 
-from api_functions import review_details_functions
-from infra.schema.details import buisness_details_schema
-from exceptions.exceptions import InvalidAmountException, InvalidValueException
+from loan_management.api_functions import review_details_functions
+from loan_management.infra.schema.details import buisness_details_schema
+from loan_management.exceptions.exceptions import InvalidAmountException, InvalidValueException
 
 import logging
 import traceback
 
-bp = Blueprint('review_details', __name__)
+review_details = Blueprint('review_details', __name__)
 
-@bp.route('/balance_sheet', methods=['GET'])
-def review_details():
+@review_details.route('/balance_sheet', methods=['GET'])
+def fetch_review_details():
     args = request.args
     try:
         buisness_details = buisness_details_schema(args)
@@ -29,7 +29,7 @@ def review_details():
         logging.error("Invalid value passed for accounting provider")
         return Response(response="Value passed for accounting provider is wrong", status=400)
 
-    balanced_sheet = review_details_functions.fetch_balanced_sheet(buisness_details["id"])
+    balanced_sheet = review_details_functions.fetch_balanced_sheet(buisness_details["buisness_id"])
 
     buisness_details['sheet'] = balanced_sheet
-    return Response(response=buisness_details, status=200)
+    return buisness_details, 200
