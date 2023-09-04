@@ -11,6 +11,7 @@ review_details = Blueprint('review_details', __name__)
 
 @review_details.route('/balance_sheet', methods=['GET'])
 def fetch_review_details():
+    logging.info("GET /api/balance_sheet")
     args = request.args
     try:
         buisness_details = buisness_details_schema(args)

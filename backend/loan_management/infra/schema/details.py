@@ -16,8 +16,8 @@ def submit_details_schema(schema):
         'buisness_id': schema['buisness_details']['id'],
         'buisness_name': schema['buisness_details']['name'],
         'buisness_owner': schema['buisness_details']['owner'],
-        'buisness_yoe': schema['buisness_details']['yoe'],
-        'loan_amount': schema['buisness_details']['loan_amount'],
+        'buisness_yoe': int(schema['buisness_details']['yoe']),
+        'loan_amount': int(schema['buisness_details']['loan_amount']),
         'sheet': schema['sheet']
     }
 

@@ -14,7 +14,7 @@ application_details = Blueprint('application_details', __name__)
 def initiate():
     """API call to initiate the application which return application number which can be used in various tracking systems, etc
     """
-    logging.info("POST /application/initiate")
+    logging.info("POST /api/application/initiate")
     application_num = functions.randomDigits(15)
     # application number will be used to track the application and to which buisness id it is associated for the future use case
     # check should be added so that application number generated is unique
@@ -27,7 +27,7 @@ def initiate():
 def submit():
     """API call to submit the application
     """
-    logging.info("POST /application/submit")
+    logging.info("POST /api/application/submit")
     request_data = request.get_json()
     try:
         buisness_details = submit_details_schema(request_data)
